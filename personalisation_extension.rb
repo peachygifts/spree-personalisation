@@ -4,13 +4,17 @@ class PersonalisationExtension < Spree::Extension
   url "http://"
   
   def activate
-    Variant.additional_fields += [ :name => 'Personalisation Options']
+
+    Product.class_eval do 
+      has_many :personalisation_options, :dependent => :destroy
+    end
     
+    Variant.additional_fields += [ {:name => 'Personalisable?', :only => [:product], :use => 'select', :value => lambda { |controller, field| [["No", false], ["Yes", true]]  } } ]    
     
     Order.class_eval do
       alias :defaultcontains? :contains?
       def contains?(variant)
-         defaultcontains?(variant) unless variant.product.personalisation_options
+         defaultcontains?(variant) unless variant.product.personalisable?
       end
     end
   end
