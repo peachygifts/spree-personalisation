@@ -1,12 +1,16 @@
 class PersonalisationExtension < Spree::Extension
-  version "0.1"
+  version "0.2"
   description "Allow users to enter text information to personalise a product"
-  url "http://"
+  url "http://github.com/peachygifts/Spree-Personalised-Products"
   
   def activate
+    Admin::BaseController.class_eval do
+      helper :PersonalisationOptions
+    end
 
     Product.class_eval do 
       has_many :personalisation_options, :dependent => :destroy
+      accepts_nested_attributes_for :personalisation_options, :allow_destroy => true
     end
     
     Variant.additional_fields += [ {:name => 'Personalisable?', :only => [:product], :use => 'select', :value => lambda { |controller, field| [["No", false], ["Yes", true]]  } } ]    

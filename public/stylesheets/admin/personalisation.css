@@ -1,0 +1,12 @@
+#persoptions {
+	border: 1px solid #ccc;
+	padding: 10px;
+	float: left;
+}
+.persoption {
+	border: 1px solid #ccc;
+	margin: 10px 10px 10px 0;
+	background-color: #eee;
+	padding: 10px;
+	float: left;
+}

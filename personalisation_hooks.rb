@@ -39,5 +39,6 @@ class PersonalisationHooks < Spree::ThemeSupport::HookListener
   #     tab(:taxonomies)
   #   end
   #
-
+  insert_after :admin_inside_head, :text => "<link rel='stylesheet' type='text/css' href='/stylesheets/admin/personalisation.css' />"
+  insert_after :admin_inside_head, :text => "<script src='/javascripts/admin/persoptions.js' type='text/javascript'></script>"
 end

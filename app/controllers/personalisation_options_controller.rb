@@ -1,0 +1,3 @@
+class PersonalisationOptionsController < ApplicationController
+  
+end
