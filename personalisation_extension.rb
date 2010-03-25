@@ -1,7 +1,7 @@
 class PersonalisationExtension < Spree::Extension
   version "0.2"
   description "Allow users to enter text information to personalise a product"
-  url "http://github.com/peachygifts/Spree-Personalised-Products"
+  url "http://github.com/peachygifts/spree-personalisation"
   
   def activate
     Admin::BaseController.class_eval do
