@@ -13,6 +13,10 @@ class PersonalisationExtension < Spree::Extension
       accepts_nested_attributes_for :personalisation_options, :allow_destroy => true
     end
     
+    LineItem.class_eval do 
+      has_many :personalisation_details, :dependent => :destroy
+    end
+    
     Variant.additional_fields += [ {:name => 'Personalisable?', :only => [:product], :use => 'select', :value => lambda { |controller, field| [["No", false], ["Yes", true]]  } } ]    
     
     Order.class_eval do
